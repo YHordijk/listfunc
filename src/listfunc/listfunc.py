@@ -1,0 +1,74 @@
+ensure_list = lambda x: [x] if not isinstance(x, (list, tuple, set)) else x  # noqa
+squeeze_list = lambda x: x[0] if len(x) == 1 else x  # noqa
+
+
+def argsort(lst, key=None):
+    if key is None:
+        key = lambda x: x  # noqa
+
+    return [x[0] for x in sorted(enumerate(lst), key=lambda x: key(x[1]))]
+
+
+def remove(lst, x):
+    x = ensure_list(x)
+    for x_ in x:
+        lst.remove(x_)
+
+
+def move(lst, x, newidx):
+    remove(lst, x)
+    lst.insert(newidx, x)
+
+
+def get_first_truthy(lst):
+    # returns the first element from left that evaluates to True
+    # it therefore ignores None, False, '', [], {}, etc.
+    if not any(lst):
+        return
+
+    for item in lst:
+        if item:
+            return item
+
+
+def split(lst, val):
+    # splits a list based on value, similar to str.split
+    idx = lst.index(val)
+    return lst[:idx], lst[idx+1:]
+
+
+def indices(lst, val):
+    idxs = []
+    for i, item in enumerate(lst):
+        if item == val:
+            idxs.append(i)
+    return idxs
+
+
+def replace(lst, old, new):
+    idx = lst.index(old)
+    lst[idx] = new
+    return lst
+
+
+def common_list(lst1, lst2):
+    common = []
+    for p1, p2 in zip(lst1, lst2):
+        if p1 == p2:
+            common.append(p1)
+        else:
+            break
+    return common
+
+
+def startswith(mainlst, testlst):
+    return common_list(mainlst, testlst) == testlst
+
+
+if __name__ == '__main__':
+    print(split([0, 1, 2, 3, 4, 5, 6], 3))
+
+    print(indices([0, 1, 2, 1, 1, 4, 5], 1))
+
+    print(startswith(['A', 'B', 'C'], ['A', 'B']))
+    print(startswith(['A', 'B'], ['A', 'B', 'C']))
