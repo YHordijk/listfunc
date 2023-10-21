@@ -1,0 +1,21 @@
+listfunc package
+================
+
+Submodules
+----------
+
+listfunc.listfunc module
+------------------------
+
+.. automodule:: listfunc.listfunc
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: listfunc
+   :members:
+   :undoc-members:
+   :show-inheritance:
