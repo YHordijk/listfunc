@@ -2,6 +2,12 @@ ensure_list = lambda x: [x] if not isinstance(x, (list, tuple, set)) else x  # n
 squeeze_list = lambda x: x[0] if len(x) == 1 else x  # noqa
 
 
+def ensure_2d(x):
+    x = ensure_list(x)
+    x = [ensure_list(y) for y in x]
+    return x
+
+
 def argsort(lst, key=None):
     if key is None:
         key = lambda x: x  # noqa
